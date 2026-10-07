@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: #f5f5f5;
+    color: #111;
+    transition: 0.3s;
+}
+
+/* ===== TOP CONTROLS ===== */
+
+.controls {
+    max-width: 900px;
+    margin: 18px auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.control-group {
+    display: flex;
+    gap: 8px;
+}
+
+.control-btn {
+    border: 1px solid #ddd;
+    background: white;
+    color: #111;
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.control-btn:hover {
+    transform: translateY(-2px);
+}
+
+.control-btn.active {
+    background: #111;
+    color: white;
+    border-color: #111;
+}
+
+/* ===== CARD ===== */
+
+.laptop-card {
+    max-width: 900px;
+    margin: 12px auto 30px;
+    padding: 28px;
+    background: white;
+    border-radius: 24px;
+    transition: 0.3s;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: #777;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+h1 {
+    margin: 6px 0;
+    font-size: 30px;
+}
+
+.model {
+    color: #777;
+    margin-bottom: 24px;
+}
+
+.spec-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.spec {
+    padding: 18px;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    background: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.spec:hover,
+.spec.active {
+    background: #eeeeee;
+    transform: translateY(-3px);
+    border-color: #111;
+}
+
+.spec-label {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.spec-name {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.detail {
+    margin-top: 16px;
+    padding: 24px;
+    min-height: 170px;
+    border-radius: 18px;
+    background: #111;
+    color: white;
+    transition: 0.3s;
+}
+
+.detail-label {
+    font-size: 12px;
+    color: #aaa;
+    font-weight: bold;
+}
+
+.detail-title {
+    font-size: 23px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.detail-description {
+    margin-top: 10px;
+    color: #ccc;
+    line-height: 1.6;
+}
+
+.hint {
+    margin-top: 14px;
+    font-size: 12px;
+    color: #777;
+}
+
+/* ===== DARK MODE ===== */
+
+body.dark {
+    background: #111;
+    color: white;
+}
+
+body.dark .laptop-card {
+    background: #1b1b1b;
+}
+
+body.dark .control-btn {
+    background: #1b1b1b;
+    color: white;
+    border-color: #333;
+}
+
+body.dark .control-btn.active {
+    background: white;
+    color: #111;
+}
+
+body.dark .spec {
+    background: #1b1b1b;
+    border-color: #333;
+}
+
+body.dark .spec:hover,
+body.dark .spec.active {
+    background: #292929;
+    border-color: white;
+}
+
+body.dark .spec-label,
+body.dark .subtitle,
+body.dark .model,
+body.dark .hint {
+    color: #999;
+}
+
+body.dark .detail {
+    background: white;
+    color: #111;
+}
+
+body.dark .detail-label {
+    color: #777;
+}
+
+body.dark .detail-description {
+    color: #444;
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 650px) {
+
+    .controls {
+        margin: 12px;
+    }
+
+    .spec-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .laptop-card {
+        margin: 10px;
+        padding: 18px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOP CONTROLS -->
+
+<div class="controls">
+
+    <!-- LEFT: DARK / LIGHT -->
+
+    <div class="control-group">
+
+        <button
+            class="control-btn active"
+            id="lightBtn"
+            onclick="setTheme('light')">
+            ☀️ Light
+        </button>
+
+        <button
+            class="control-btn"
+            id="darkBtn"
+            onclick="setTheme('dark')">
+            🌙 Dark
+        </button>
+
+    </div>
+
+    <!-- RIGHT: LANGUAGE -->
+
+    <div class="control-group">
+
+        <button
+            class="control-btn active"
+            id="viBtn"
+            onclick="setLanguage('vi')">
+            VI
+        </button>
+
+        <button
+            class="control-btn"
+            id="enBtn"
+            onclick="setLanguage('en')">
+            EN
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- LAPTOP CARD -->
+
+<div class="laptop-card">
+
+    <div class="subtitle" id="subtitle">
+        LAPTOP • GAMING
+    </div>
+
+    <h1>GIGABYTE Gaming A16</h1>
+
+    <div class="model">
+        CWHI3VNC94SH • RTX 5070
+    </div>
+
+
+    <!-- SPECS -->
+
+    <div class="spec-grid">
+
+        <div class="spec active" data-key="cpu">
+
+            <div class="spec-label" data-vi="CPU" data-en="CPU">
+                CPU
+            </div>
+
+            <div class="spec-name"
+                 data-vi="Core i7-13620H"
+                 data-en="Core i7-13620H">
+                Core i7-13620H
+            </div>
+
+        </div>
+
+
+        <div class="spec" data-key="gpu">
+
+            <div class="spec-label"
+                 data-vi="GPU"
+                 data-en="GPU">
+                GPU
+            </div>
+
+            <div class="spec-name"
+                 data-vi="RTX 5070"
+                 data-en="RTX 5070">
+                RTX 5070
+            </div>
+
+        </div>
+
+
+        <div class="spec" data-key="display">
+
+            <div class="spec-label"
+                 data-vi="MÀN HÌNH"
+                 data-en="DISPLAY">
+                MÀN HÌNH
+            </div>
+
+            <div class="spec-name"
+                 data-vi="2.5K • 165Hz"
+                 data-en="2.5K • 165Hz">
+                2.5K • 165Hz
+            </div>
+
+        </div>
+
+
+        <div class="spec" data-key="ram">
+
+            <div class="spec-label"
+                 data-vi="RAM"
+                 data-en="RAM">
+                RAM
+            </div>
+
+            <div class="spec-name"
+                 data-vi="16GB DDR5"
+                 data-en="16GB DDR5">
+                16GB DDR5
+            </div>
+
+        </div>
+
+
+        <div class="spec" data-key="storage">
+
+            <div class="spec-label"
+                 data-vi="SSD"
+                 data-en="SSD">
+                SSD
+            </div>
+
+            <div class="spec-name"
+                 data-vi="1TB NVMe"
+                 data-en="1TB NVMe">
+                1TB NVMe
+            </div>
+
+        </div>
+
+
+        <div class="spec" data-key="features">
+
+            <div class="spec-label"
+                 data-vi="CÔNG NGHỆ"
+                 data-en="FEATURES">
+                CÔNG NGHỆ
+            </div>
+
+            <div class="spec-name"
+                 data-vi="MUX • DLSS 4"
+                 data-en="MUX • DLSS 4">
+                MUX • DLSS 4
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- DETAIL -->
+
+    <div class="detail">
+
+        <div class="detail-label" id="detailLabel">
+            CPU
+        </div>
+
+        <div class="detail-title" id="detailTitle">
+            Intel Core i7-13620H
+        </div>
+
+        <div class="detail-description"
+             id="detailDescription">
+            10 nhân / 16 luồng, xung nhịp tối đa 4,9 GHz.
+            Phù hợp gaming, học tập và các tác vụ đa nhiệm.
+        </div>
+
+    </div>
+
+
+    <div class="hint" id="hint">
+        🖱️ Di chuột hoặc bấm vào từng thông số để xem chi tiết.
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================
+   SPEC DATA
+===================================== */
+
+const data = {
+
+    cpu: {
+        vi: {
+            label: "CPU",
+            title: "Intel Core i7-13620H",
+            description:
+            "10 nhân / 16 luồng, xung nhịp tối đa 4,9 GHz. Phù hợp gaming, học tập và các tác vụ đa nhiệm."
+        },
+
+        en: {
+            label: "CPU",
+            title: "Intel Core i7-13620H",
+            description:
+            "10 cores / 16 threads, up to 4.9 GHz. Suitable for gaming, studying and multitasking."
+        }
+    },
+
+
+    gpu: {
+        vi: {
+            label: "GPU",
+            title: "NVIDIA GeForce RTX 5070",
+            description:
+            "GPU RTX 5070 với 8GB GDDR7, hỗ trợ Ray Tracing, DLSS 4 và NVIDIA Reflex."
+        },
+
+        en: {
+            label: "GPU",
+            title: "NVIDIA GeForce RTX 5070",
+            description:
+            "RTX 5070 GPU with 8GB GDDR7, supporting Ray Tracing, DLSS 4 and NVIDIA Reflex."
+        }
+    },
+
+
+    display: {
+        vi: {
+            label: "MÀN HÌNH",
+            title: "16 inch WQXGA IPS • 165Hz",
+            description:
+            "Độ phân giải 2560 × 1600, tần số quét 165Hz và độ phủ màu 100% sRGB."
+        },
+
+        en: {
+            label: "DISPLAY",
+            title: "16-inch WQXGA IPS • 165Hz",
+            description:
+            "2560 × 1600 resolution, 165Hz refresh rate and 100% sRGB color coverage."
+        }
+    },
+
+
+    ram: {
+        vi: {
+            label: "RAM",
+            title: "16GB DDR5-5200",
+            description:
+            "RAM DDR5 tốc độ cao, phù hợp chơi game, học tập và đa nhiệm. Có thể nâng cấp khi cần."
+        },
+
+        en: {
+            label: "RAM",
+            title: "16GB DDR5-5200",
+            description:
+            "High-speed DDR5 memory for gaming, studying and multitasking. Upgradeable when needed."
+        }
+    },
+
+
+    storage: {
+        vi: {
+            label: "SSD",
+            title: "1TB M.2 NVMe PCIe Gen 4",
+            description:
+            "Dung lượng 1TB cho hệ điều hành, phần mềm và game. Chuẩn PCIe Gen 4 cho tốc độ truy xuất nhanh."
+        },
+
+        en: {
+            label: "SSD",
+            title: "1TB M.2 NVMe PCIe Gen 4",
+            description:
+            "1TB of storage for the operating system, software and games, with fast PCIe Gen 4 performance."
+        }
+    },
+
+
+    features: {
+        vi: {
+            label: "CÔNG NGHỆ",
+            title: "MUX Switch • DLSS 4 • Ray Tracing",
+            description:
+            "MUX Switch tối ưu đường truyền GPU, DLSS 4 tăng hiệu năng và Ray Tracing cải thiện hiệu ứng ánh sáng trong game."
+        },
+
+        en: {
+            label: "FEATURES",
+            title: "MUX Switch • DLSS 4 • Ray Tracing",
+            description:
+            "MUX Switch optimizes GPU routing, DLSS 4 improves performance, while Ray Tracing enhances lighting effects in games."
+        }
+    }
+
+};
+
+
+/* =====================================
+   VARIABLES
+===================================== */
+
+let currentLanguage = "vi";
+
+const specs = document.querySelectorAll(".spec");
+
+
+/* =====================================
+   SHOW SPEC
+===================================== */
+
+function showSpec(key) {
+
+    const item = data[key][currentLanguage];
+
+    document.getElementById("detailLabel").textContent =
+        item.label;
+
+    document.getElementById("detailTitle").textContent =
+        item.title;
+
+    document.getElementById("detailDescription").textContent =
+        item.description;
+
+    specs.forEach(spec => {
+
+        spec.classList.toggle(
+            "active",
+            spec.dataset.key === key
+        );
+
+    });
+
+}
+
+
+/* =====================================
+   LANGUAGE
+===================================== */
+
+function setLanguage(language) {
+
+    currentLanguage = language;
+
+    document.querySelectorAll("[data-vi]").forEach(element => {
+
+        element.textContent =
+            element.dataset[language];
+
+    });
+
+
+    if (language === "vi") {
+
+        document.getElementById("subtitle").textContent =
+            "LAPTOP • GAMING";
+
+        document.getElementById("hint").textContent =
+            "🖱️ Di chuột hoặc bấm vào từng thông số để xem chi tiết.";
+
+    } else {
+
+        document.getElementById("subtitle").textContent =
+            "LAPTOP • GAMING";
+
+        document.getElementById("hint").textContent =
+            "🖱️ Hover or click a specification to see details.";
+
+    }
+
+
+    document.getElementById("viBtn")
+        .classList.toggle("active", language === "vi");
+
+    document.getElementById("enBtn")
+        .classList.toggle("active", language === "en");
+
+
+    /* Update currently selected spec */
+
+    const activeSpec =
+        document.querySelector(".spec.active");
+
+    if (activeSpec) {
+        showSpec(activeSpec.dataset.key);
+    }
+
+}
+
+
+/* =====================================
+   DARK / LIGHT MODE
+===================================== */
+
+function setTheme(theme) {
+
+    document.body.classList.toggle(
+        "dark",
+        theme === "dark"
+    );
+
+    document.getElementById("lightBtn")
+        .classList.toggle(
+            "active",
+            theme === "light"
+        );
+
+    document.getElementById("darkBtn")
+        .classList.toggle(
+            "active",
+            theme === "dark"
+        );
+
+}
+
+
+/* =====================================
+   HOVER + CLICK
+===================================== */
+
+specs.forEach(spec => {
+
+    spec.addEventListener(
+        "mouseenter",
+        () => showSpec(spec.dataset.key)
+    );
+
+    spec.addEventListener(
+        "click",
+        () => showSpec(spec.dataset.key)
+    );
+
+});
+
+</script>
+
+</body>
+</html>
