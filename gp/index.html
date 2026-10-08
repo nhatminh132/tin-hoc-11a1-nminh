@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bốn Anh Em Siêu Nhân</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: #111;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    text-align: center;
+    padding: 20px;
+}
+
+.small-title {
+    color: #888;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 32px;
+}
+
+.group-name {
+    font-size: clamp(44px, 9vw, 110px);
+    line-height: 1.08;
+    font-weight: 900;
+    letter-spacing: -2px;
+    padding: 0.15em 0;
+
+    background: linear-gradient(
+        90deg,
+        #ff0055,
+        #ff8a00,
+        #ffe600,
+        #00ff88,
+        #00c8ff,
+        #6c00ff,
+        #ff00cc,
+        #ff0055
+    );
+
+    background-size: 400% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+
+    animation: rgb 8s linear infinite;
+}
+
+@keyframes rgb {
+    from {
+        background-position: 0% 50%;
+    }
+
+    to {
+        background-position: 400% 50%;
+    }
+}
+
+.line {
+    width: 70px;
+    height: 2px;
+    margin: 30px auto 0;
+    background: #555;
+}
+
+@media (max-width: 600px) {
+
+    .container {
+        padding: 15px;
+    }
+
+    .small-title {
+        font-size: 11px;
+        letter-spacing: 1px;
+        margin-bottom: 25px;
+    }
+
+    .group-name {
+        font-size: clamp(38px, 11vw, 70px);
+        line-height: 1.08;
+        letter-spacing: -1px;
+    }
+
+    .line {
+        margin-top: 25px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main class="container">
+
+    <div class="small-title">
+        11A1 · Bài tập 2.2
+    </div>
+
+    <h1 class="group-name">
+        BỐN ANH EM<br>
+        SIÊU NHÂN
+    </h1>
+
+    <div class="line"></div>
+
+</main>
+
+</body>
+</html>
