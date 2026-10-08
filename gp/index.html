@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -9,16 +10,28 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
 
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
 body {
     min-height: 100vh;
+
     background: #111;
     color: #fff;
+
     font-family: 'Inter', sans-serif;
 
     display: flex;
@@ -26,28 +39,121 @@ body {
     justify-content: center;
 
     overflow: hidden;
+
+    transition:
+        background .35s ease,
+        color .35s ease;
 }
+
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
 
 .container {
     width: 90%;
     max-width: 1200px;
+
     text-align: center;
+
     padding: 20px;
+
+    position: relative;
 }
+
+
+/* =========================================================
+   DARK / LIGHT TOGGLE
+   ========================================================= */
+
+.theme-toggle {
+    width: 52px;
+    height: 52px;
+
+    flex: 0 0 auto;
+
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 50%;
+
+    background: #0d0d0d;
+    color: #fff;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    top: 20px;
+    right: 0;
+
+    transition:
+        background .3s ease,
+        border .3s ease,
+        transform .2s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.06);
+}
+
+.toggle-icon {
+    position: absolute;
+
+    font-size: 21px;
+    line-height: 1;
+
+    transition:
+        opacity .25s ease,
+        transform .25s ease;
+}
+
+
+/* Dark mode */
+
+.theme-toggle .moon {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+}
+
+.theme-toggle .sun {
+    opacity: 0;
+    transform: rotate(-45deg) scale(.5);
+}
+
+
+/* =========================================================
+   SMALL TITLE
+   ========================================================= */
 
 .small-title {
     color: #888;
+
     font-size: 13px;
     font-weight: 600;
+
     letter-spacing: 2px;
+
     margin-bottom: 32px;
+
+    transition: color .35s ease;
 }
+
+
+/* =========================================================
+   GROUP NAME
+   ========================================================= */
 
 .group-name {
     font-size: clamp(44px, 9vw, 110px);
+
     line-height: 1.08;
+
     font-weight: 900;
+
     letter-spacing: -2px;
+
     padding: 0.15em 0;
 
     background: linear-gradient(
@@ -63,14 +169,18 @@ body {
     );
 
     background-size: 400% 100%;
+
     background-clip: text;
     -webkit-background-clip: text;
+
     color: transparent;
 
     animation: rgb 8s linear infinite;
 }
 
+
 @keyframes rgb {
+
     from {
         background-position: 0% 50%;
     }
@@ -80,12 +190,70 @@ body {
     }
 }
 
+
+/* =========================================================
+   LINE
+   ========================================================= */
+
 .line {
     width: 70px;
     height: 2px;
+
     margin: 30px auto 0;
+
     background: #555;
+
+    transition: background .35s ease;
 }
+
+
+/* =========================================================
+   LIGHT MODE
+   ========================================================= */
+
+body.light {
+    background: #f5f5f5;
+    color: #080808;
+}
+
+
+/* Toggle */
+
+body.light .theme-toggle {
+    background: #fff;
+    color: #080808;
+
+    border-color: rgba(0,0,0,.10);
+}
+
+body.light .theme-toggle .moon {
+    opacity: 0;
+    transform: rotate(45deg) scale(.5);
+}
+
+body.light .theme-toggle .sun {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+}
+
+
+/* Text */
+
+body.light .small-title {
+    color: #777;
+}
+
+
+/* Line */
+
+body.light .line {
+    background: #aaa;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media (max-width: 600px) {
 
@@ -93,41 +261,121 @@ body {
         padding: 15px;
     }
 
+
+    /* Same proportional toggle style,
+       scaled down for phone */
+
+    .theme-toggle {
+        width: 45px;
+        height: 45px;
+
+        top: 15px;
+        right: 0;
+    }
+
+    .toggle-icon {
+        font-size: 19px;
+    }
+
+
     .small-title {
         font-size: 11px;
+
         letter-spacing: 1px;
+
         margin-bottom: 25px;
     }
 
+
     .group-name {
         font-size: clamp(38px, 11vw, 70px);
+
         line-height: 1.08;
+
         letter-spacing: -1px;
     }
+
 
     .line {
         margin-top: 25px;
     }
 }
+
 </style>
 </head>
+
 
 <body>
 
 <main class="container">
 
+
+    <!-- Dark / Light Toggle -->
+
+    <button
+        class="theme-toggle"
+        id="themeToggle"
+        aria-label="Đổi giao diện"
+    >
+        <span class="toggle-icon moon">☾</span>
+        <span class="toggle-icon sun">☀</span>
+    </button>
+
+
     <div class="small-title">
         11A1 · Bài tập 2.2
     </div>
+
 
     <h1 class="group-name">
         BỐN ANH EM<br>
         SIÊU NHÂN
     </h1>
 
+
     <div class="line"></div>
+
 
 </main>
 
+
+<script>
+
+/* =========================================================
+   DARK / LIGHT MODE
+   ========================================================= */
+
+const themeToggle = document.getElementById("themeToggle");
+
+
+themeToggle.addEventListener("click", () => {
+
+    document.body.classList.toggle("light");
+
+    const isLight =
+        document.body.classList.contains("light");
+
+
+    localStorage.setItem(
+        "team-theme",
+        isLight ? "light" : "dark"
+    );
+
+});
+
+
+/* =========================================================
+   REMEMBER USER'S CHOICE
+   ========================================================= */
+
+if (localStorage.getItem("team-theme") === "light") {
+
+    document.body.classList.add("light");
+
+}
+
+</script>
+
 </body>
 </html>
+```
