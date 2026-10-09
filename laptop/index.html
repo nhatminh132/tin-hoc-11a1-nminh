@@ -165,32 +165,124 @@ body {
 .product-image {
     width: 100%;
     height: 400px;
-
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-
     background: #181818;
     border: 1px solid #292929;
     border-radius: 18px;
-
     overflow: hidden;
-
-    transition:
-        background .35s ease,
-        border-color .35s ease;
+    touch-action: pan-y;
+    transition: background .35s ease, border-color .35s ease;
 }
 
-.product-image img {
+.product-carousel-track {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    transition: transform .45s cubic-bezier(.22,.7,.25,1);
+    will-change: transform;
+}
+
+.product-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-slide img {
     width: 90%;
     height: 90%;
     object-fit: contain;
-
+    user-select: none;
+    -webkit-user-drag: none;
     transition: transform .3s ease;
 }
 
-.product-image:hover img {
+.product-image:hover .product-slide img {
     transform: scale(1.025);
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 50%;
+    background: rgba(8,8,8,.72);
+    color: #fff;
+    font-size: 25px;
+    line-height: 1;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: background .2s ease, transform .2s ease, opacity .2s ease;
+}
+.carousel-arrow:hover {
+    background: rgba(55,55,55,.95);
+    transform: translateY(-50%) scale(1.06);
+}
+.carousel-arrow.prev { left: 14px; }
+.carousel-arrow.next { right: 14px; }
+
+.carousel-dots {
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    bottom: 14px;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 10px;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 999px;
+    background: rgba(8,8,8,.62);
+    backdrop-filter: blur(8px);
+}
+.carousel-dot {
+    width: 7px;
+    height: 7px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #666;
+    cursor: pointer;
+    transition: width .25s ease, background .25s ease;
+}
+.carousel-dot.active {
+    width: 20px;
+    border-radius: 999px;
+    background: #fff;
+}
+.carousel-count {
+    position: absolute;
+    z-index: 2;
+    top: 14px;
+    right: 14px;
+    padding: 6px 9px;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 999px;
+    background: rgba(8,8,8,.62);
+    color: #ddd;
+    font-size: 11px;
+    font-weight: 600;
+    backdrop-filter: blur(8px);
+}
+
+@media (max-width: 600px) {
+    .carousel-arrow { width: 36px; height: 36px; font-size: 22px; }
+    .carousel-arrow.prev { left: 9px; }
+    .carousel-arrow.next { right: 9px; }
+    .carousel-dots { bottom: 10px; }
 }
 
 .price-row {
@@ -885,13 +977,31 @@ body.light footer {
 
     <section class="product">
 
-        <div class="product-image">
+        <div class="product-image" id="productCarousel" aria-label="Thư viện ảnh GIGABYTE Gaming A16">
+            <div class="product-carousel-track" id="carouselTrack">
+                <div class="product-slide">
+                    <img src="https://cdn2.fptshop.com.vn/unsafe/750x0/filters:format(webp):quality(75)/gigabyte_gaming_a16_1_60109e9879.png" alt="GIGABYTE Gaming A16 - ảnh 1" draggable="false">
+                </div>
+                <div class="product-slide">
+                    <img src="https://cdn2.fptshop.com.vn/unsafe/750x0/filters:format(webp):quality(75)/gigabyte_gaming_a16_3_1ca96dbf9f.png" alt="GIGABYTE Gaming A16 - ảnh 2" draggable="false">
+                </div>
+                <div class="product-slide">
+                    <img src="https://cdn2.fptshop.com.vn/unsafe/750x0/filters:format(webp):quality(75)/gigabyte_gaming_a16_4_ab016038fd.png" alt="GIGABYTE Gaming A16 - ảnh 3" draggable="false">
+                </div>
+                <div class="product-slide">
+                    <img src="https://cdn2.fptshop.com.vn/unsafe/750x0/filters:format(webp):quality(75)/gigabyte_gaming_a16_7_0c5efc337b.png" alt="GIGABYTE Gaming A16 - ảnh 4" draggable="false">
+                </div>
+            </div>
 
-            <img
-                src="YOUR_IMAGE_URL_HERE"
-                alt="GIGABYTE Gaming A16"
-            >
-
+            <button class="carousel-arrow prev" id="carouselPrev" type="button" aria-label="Ảnh trước">‹</button>
+            <button class="carousel-arrow next" id="carouselNext" type="button" aria-label="Ảnh tiếp theo">›</button>
+            <div class="carousel-count" id="carouselCount" aria-live="polite">01 / 04</div>
+            <div class="carousel-dots" id="carouselDots" aria-label="Chọn ảnh">
+                <button class="carousel-dot active" type="button" aria-label="Ảnh 1" aria-current="true"></button>
+                <button class="carousel-dot" type="button" aria-label="Ảnh 2"></button>
+                <button class="carousel-dot" type="button" aria-label="Ảnh 3"></button>
+                <button class="carousel-dot" type="button" aria-label="Ảnh 4"></button>
+            </div>
         </div>
 
         <div class="price-row">
@@ -1595,6 +1705,60 @@ function showSpec(id, button) {
 
 
 /* =========================================================
+   PRODUCT IMAGE CAROUSEL
+========================================================= */
+
+(() => {
+    const carousel = document.getElementById('productCarousel');
+    const track = document.getElementById('carouselTrack');
+    const slides = Array.from(carousel.querySelectorAll('.product-slide'));
+    const dots = Array.from(document.querySelectorAll('#carouselDots .carousel-dot'));
+    const count = document.getElementById('carouselCount');
+    const prev = document.getElementById('carouselPrev');
+    const next = document.getElementById('carouselNext');
+    let current = 0;
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    function showSlide(index) {
+        current = (index + slides.length) % slides.length;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === current);
+            if (i === current) dot.setAttribute('aria-current', 'true');
+            else dot.removeAttribute('aria-current');
+        });
+        count.textContent = `${String(current + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+    }
+
+    prev.addEventListener('click', () => showSlide(current - 1));
+    next.addEventListener('click', () => showSlide(current + 1));
+    dots.forEach((dot, index) => dot.addEventListener('click', () => showSlide(index)));
+
+    carousel.addEventListener('keydown', event => {
+        if (event.key === 'ArrowLeft') showSlide(current - 1);
+        if (event.key === 'ArrowRight') showSlide(current + 1);
+    });
+    carousel.tabIndex = 0;
+
+    carousel.addEventListener('touchstart', event => {
+        touchStartX = event.changedTouches[0].clientX;
+        touchStartY = event.changedTouches[0].clientY;
+    }, { passive: true });
+
+    carousel.addEventListener('touchend', event => {
+        const deltaX = event.changedTouches[0].clientX - touchStartX;
+        const deltaY = event.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(deltaX) > 45 && Math.abs(deltaX) > Math.abs(deltaY)) {
+            showSlide(current + (deltaX < 0 ? 1 : -1));
+        }
+    }, { passive: true });
+
+    showSlide(0);
+})();
+
+
+/* =========================================================
    DARK / LIGHT MODE
 ========================================================= */
 
@@ -1631,4 +1795,3 @@ if (localStorage.getItem('team-theme') === 'light') {
 
 </body>
 </html>
-
