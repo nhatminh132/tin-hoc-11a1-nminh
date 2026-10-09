@@ -3,1453 +3,287 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>vivo iQOO 15 5G</title>
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+body{min-height:100vh;background:#111;color:#fff;font-family:Inter,sans-serif}
+.container{width:90%;max-width:1100px;margin:auto;padding:45px 20px}
+.small-title{color:#888;font-size:13px;font-weight:600;letter-spacing:2px;margin-bottom:25px}
+.brand{color:#666;font-size:clamp(24px,4vw,38px);font-weight:700;letter-spacing:-1px;line-height:1}
+.title{margin-top:4px;font-size:clamp(64px,12vw,125px);line-height:.88;font-weight:900;letter-spacing:-6px}
+.description{max-width:650px;margin-top:27px;color:#999;font-size:14px;line-height:1.7}
+.line{width:70px;height:2px;margin:28px 0;background:#555}
+.product{margin-top:45px}
+.carousel{position:relative;width:100%;height:400px;overflow:hidden;background:#181818;border:1px solid #292929;border-radius:18px}
+.carousel-track{display:flex;width:100%;height:100%;transition:transform .35s ease}
+.carousel-slide{flex:0 0 100%;height:100%;display:flex;align-items:center;justify-content:center}
+.carousel-slide img{display:block;width:100%;height:100%;object-fit:contain;user-select:none}
+.carousel-arrow{position:absolute;z-index:2;top:50%;transform:translateY(-50%);width:42px;height:42px;border:1px solid rgba(255,255,255,.15);border-radius:50%;background:rgba(15,15,15,.8);color:#fff;font-size:26px;line-height:1;cursor:pointer;transition:background .2s ease,transform .2s ease}
+.carousel-arrow:hover{background:rgba(55,55,55,.95);transform:translateY(-50%) scale(1.06)}
+.carousel-arrow.prev{left:14px}.carousel-arrow.next{right:14px}
+.carousel-dots{position:absolute;z-index:2;left:50%;bottom:14px;transform:translateX(-50%);display:flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:rgba(8,8,8,.62);backdrop-filter:blur(8px)}
+.carousel-dot{width:7px;height:7px;padding:0;border:0;border-radius:50%;background:#666;cursor:pointer;transition:width .25s ease,background .25s ease}
+.carousel-dot.active{width:20px;border-radius:999px;background:#fff}
+.carousel-count{position:absolute;z-index:2;top:14px;right:14px;padding:6px 9px;border:1px solid rgba(255,255,255,.12);border-radius:999px;background:rgba(8,8,8,.62);color:#ddd;font-size:11px;font-weight:600;backdrop-filter:blur(8px)}
+.price-row{display:flex;align-items:center;justify-content:space-between;margin-top:18px}
+.price{font-size:25px;font-weight:800;letter-spacing:-.5px}
+.seller{color:#777;font-size:12px;text-align:right}.seller strong{color:#aaa}
+.buy-button{display:inline-flex;align-items:center;justify-content:center;gap:10px;margin-top:18px;padding:13px 22px;background:#fff;color:#111;border:1px solid #fff;border-radius:10px;font-family:inherit;font-size:12px;font-weight:800;letter-spacing:.5px;text-decoration:none;transition:background .25s ease,color .25s ease,transform .25s ease}
+.buy-button:hover{background:#d9d9d9;transform:translateY(-2px)}
+.buy-button .arrow{font-size:17px;transition:transform .25s ease}.buy-button:hover .arrow{transform:translate(3px,-3px)}
+.section{margin-top:70px}
+.section-title{font-size:30px;font-weight:800;letter-spacing:-1px}
+.section-subtitle{color:#777;font-size:13px;margin-top:7px}
+.tabs{display:flex;flex-wrap:wrap;gap:7px;margin-top:23px}
+.tab{display:inline-flex;align-items:center;gap:7px;padding:9px 12px;border:1px solid #292929;border-radius:9px;background:#181818;color:#777;font-size:12px;font-weight:600;cursor:pointer;transition:color .2s ease,background .2s ease,border-color .2s ease}
+.tab:hover{color:#ddd;border-color:#444}.tab.active{background:#fff;color:#111;border-color:#fff}
+.panel{display:none;margin-top:12px;padding:22px;background:#181818;border:1px solid #292929;border-radius:15px;animation:show .2s ease}
+.panel.active{display:block}
+@keyframes show{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.panel-head{display:flex;align-items:center;gap:13px;margin-bottom:18px}
+.panel-icon{width:40px;height:40px;display:grid;place-items:center;flex-shrink:0;border:1px solid #303030;border-radius:10px;background:#111;font-size:20px}
+.panel-head h3{font-size:18px}.panel-head p{color:#777;font-size:11px;margin-top:3px}
+.spec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px}
+.spec{padding:15px;background:#111;border:1px solid #252525;border-radius:10px;transition:transform .2s ease,border-color .2s ease}
+.spec:hover{transform:translateY(-2px);border-color:#444}
+.spec-label{color:#666;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.spec-value{margin-top:7px;color:#eee;font-size:14px;font-weight:700}
+.spec-description{margin-top:4px;color:#777;font-size:11px}
+.pros-cons{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px}
+.box{padding:22px;background:#181818;border:1px solid #292929;border-radius:15px}
+.box-title{display:flex;align-items:center;gap:8px;margin-bottom:15px;font-size:14px;font-weight:700}
+.box ul{list-style:none}
+.box li{display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-top:1px solid #252525;color:#888;font-size:12px;line-height:1.5}
+.good .mark{color:#aaa}.bad .mark{color:#666}
+.reason{padding:25px;background:#181818;border:1px solid #292929;border-radius:15px}
+.reason-title{display:flex;align-items:center;gap:9px;font-size:18px;font-weight:800}
+.reason p{max-width:750px;margin-top:13px;color:#888;font-size:13px;line-height:1.7}
+footer{margin-top:65px;padding-top:20px;border-top:1px solid #292929;color:#555;font-size:11px;text-align:center}
+@media(max-width:600px){
+.container{width:94%;padding:30px 10px}.small-title{font-size:11px;letter-spacing:1px}
+.brand{font-size:24px}.title{font-size:clamp(62px,17vw,90px);letter-spacing:-4px}
+.carousel{height:280px;border-radius:15px}.carousel-arrow{width:36px;height:36px;font-size:22px}
+.carousel-arrow.prev{left:9px}.carousel-arrow.next{right:9px}.carousel-dots{bottom:10px}
+.price-row{align-items:flex-start;flex-direction:column;gap:6px}.seller{text-align:left}
+.section{margin-top:55px}.tabs{gap:5px}.tab{padding:8px 10px}.panel{padding:16px}
+.spec-grid{grid-template-columns:repeat(2,1fr)}
 }
-
-body {
-    min-height: 100vh;
-    background: #111;
-    color: #fff;
-    font-family: 'Inter', sans-serif;
-}
-
-.container {
-    width: 90%;
-    max-width: 1100px;
-    margin: auto;
-    padding: 45px 20px;
-}
-
-/* =========================
-   HEADER
-========================= */
-
-.small-title {
-    color: #888;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    margin-bottom: 25px;
-}
-
-.brand {
-    color: #666;
-    font-size: clamp(24px, 4vw, 38px);
-    font-weight: 700;
-    letter-spacing: -1px;
-    line-height: 1;
-}
-
-.title {
-    margin-top: 4px;
-
-    font-size: clamp(64px, 12vw, 125px);
-    line-height: .88;
-    font-weight: 900;
-    letter-spacing: -6px;
-}
-
-.description {
-    max-width: 650px;
-
-    margin-top: 27px;
-
-    color: #999;
-    font-size: 14px;
-    line-height: 1.7;
-}
-
-.line {
-    width: 70px;
-    height: 2px;
-
-    margin: 28px 0;
-
-    background: #555;
-}
-
-/* =========================
-   PRODUCT
-========================= */
-
-.product {
-    margin-top: 45px;
-}
-
-.product-image {
-    width: 100%;
-    height: 400px;
-
-    display: block;
-
-    object-fit: contain;
-
-    background: #181818;
-    border: 1px solid #292929;
-    border-radius: 18px;
-
-    transition: transform .3s ease;
-}
-
-.product-image:hover {
-    transform: scale(1.01);
-}
-
-.price-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    margin-top: 18px;
-}
-
-.price {
-    font-size: 25px;
-    font-weight: 800;
-    letter-spacing: -.5px;
-}
-
-.seller {
-    color: #777;
-    font-size: 12px;
-    text-align: right;
-}
-
-.seller strong {
-    color: #aaa;
-}
-
-/* =========================
-   SECTION
-========================= */
-
-.section {
-    margin-top: 70px;
-}
-
-.section-title {
-    font-size: 30px;
-    font-weight: 800;
-    letter-spacing: -1px;
-}
-
-.section-subtitle {
-    color: #777;
-    font-size: 13px;
-    margin-top: 7px;
-}
-
-/* =========================
-   CONFIG TABS
-========================= */
-
-.tabs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-
-    margin-top: 23px;
-}
-
-.tab {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-
-    padding: 9px 12px;
-
-    border: 1px solid #292929;
-    border-radius: 9px;
-
-    background: #181818;
-    color: #777;
-
-    font-size: 12px;
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition:
-        color .2s ease,
-        background .2s ease,
-        border-color .2s ease;
-}
-
-.tab svg {
-    width: 15px;
-    height: 15px;
-}
-
-.tab:hover {
-    color: #ddd;
-    border-color: #444;
-}
-
-.tab.active {
-    background: #fff;
-    color: #111;
-    border-color: #fff;
-}
-
-/* =========================
-   CONFIG PANEL
-========================= */
-
-.panel {
-    display: none;
-
-    margin-top: 12px;
-    padding: 22px;
-
-    background: #181818;
-    border: 1px solid #292929;
-    border-radius: 15px;
-
-    animation: show .2s ease;
-}
-
-.panel.active {
-    display: block;
-}
-
-@keyframes show {
-    from {
-        opacity: 0;
-        transform: translateY(4px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.panel-head {
-    display: flex;
-    align-items: center;
-    gap: 13px;
-
-    margin-bottom: 18px;
-}
-
-.panel-icon {
-    width: 40px;
-    height: 40px;
-
-    display: grid;
-    place-items: center;
-
-    flex-shrink: 0;
-
-    border: 1px solid #303030;
-    border-radius: 10px;
-
-    background: #111;
-}
-
-.panel-icon svg {
-    width: 19px;
-    height: 19px;
-}
-
-.panel-head h3 {
-    font-size: 18px;
-}
-
-.panel-head p {
-    color: #777;
-    font-size: 11px;
-    margin-top: 3px;
-}
-
-/* =========================
-   SPEC GRID
-========================= */
-
-.spec-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(auto-fit, minmax(170px, 1fr));
-
-    gap: 8px;
-}
-
-.spec {
-    padding: 15px;
-
-    background: #111;
-    border: 1px solid #252525;
-    border-radius: 10px;
-
-    transition:
-        transform .2s ease,
-        border-color .2s ease;
-}
-
-.spec:hover {
-    transform: translateY(-2px);
-    border-color: #444;
-}
-
-.spec-label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-
-    color: #666;
-
-    font-size: 10px;
-    font-weight: 600;
-
-    text-transform: uppercase;
-    letter-spacing: .5px;
-}
-
-.spec-label svg {
-    width: 13px;
-    height: 13px;
-}
-
-.spec-value {
-    margin-top: 7px;
-
-    color: #eee;
-
-    font-size: 14px;
-    font-weight: 700;
-}
-
-.spec-description {
-    margin-top: 4px;
-
-    color: #777;
-    font-size: 11px;
-}
-
-/* =========================
-   PROS / CONS
-========================= */
-
-.pros-cons {
-    display: grid;
-
-    grid-template-columns:
-        repeat(auto-fit, minmax(280px, 1fr));
-
-    gap: 10px;
-}
-
-.box {
-    padding: 22px;
-
-    background: #181818;
-    border: 1px solid #292929;
-    border-radius: 15px;
-}
-
-.box-title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
-    margin-bottom: 15px;
-
-    font-size: 14px;
-    font-weight: 700;
-}
-
-.box-title svg {
-    width: 17px;
-    height: 17px;
-}
-
-.box ul {
-    list-style: none;
-}
-
-.box li {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-
-    padding: 8px 0;
-
-    border-top: 1px solid #252525;
-
-    color: #888;
-
-    font-size: 12px;
-    line-height: 1.5;
-}
-
-.box li svg {
-    flex-shrink: 0;
-
-    width: 14px;
-    height: 14px;
-
-    margin-top: 2px;
-}
-
-.good svg {
-    color: #aaa;
-}
-
-.bad svg {
-    color: #666;
-}
-
-/* =========================
-   REASON
-========================= */
-
-.reason {
-    padding: 25px;
-
-    background: #181818;
-    border: 1px solid #292929;
-    border-radius: 15px;
-}
-
-.reason-title {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-
-    font-size: 18px;
-    font-weight: 800;
-}
-
-.reason-title svg {
-    width: 19px;
-    height: 19px;
-}
-
-.reason p {
-    max-width: 750px;
-
-    margin-top: 13px;
-
-    color: #888;
-
-    font-size: 13px;
-    line-height: 1.7;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-    margin-top: 65px;
-    padding-top: 20px;
-
-    border-top: 1px solid #292929;
-
-    color: #555;
-    font-size: 11px;
-    text-align: center;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 600px) {
-
-    .container {
-        width: 94%;
-        padding: 30px 10px;
-    }
-
-    .small-title {
-        font-size: 11px;
-        letter-spacing: 1px;
-    }
-
-    .brand {
-        font-size: 24px;
-    }
-
-    .title {
-        font-size: clamp(62px, 17vw, 90px);
-        letter-spacing: -4px;
-    }
-
-    .product-image {
-        height: 280px;
-        border-radius: 15px;
-    }
-
-    .price-row {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 6px;
-    }
-
-    .seller {
-        text-align: left;
-    }
-
-    .section {
-        margin-top: 55px;
-    }
-
-    .tabs {
-        gap: 5px;
-    }
-
-    .tab {
-        padding: 8px 10px;
-    }
-
-    .panel {
-        padding: 16px;
-    }
-
-    .spec-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 380px) {
-
-    .spec-grid {
-        grid-template-columns: 1fr;
-    }
-}
+@media(max-width:380px){.spec-grid{grid-template-columns:1fr}}
 </style>
 </head>
-
 <body>
-
 <main class="container">
+  <div class="small-title">11A1 · BÀI TẬP 2.2</div>
+  <div class="brand">vivo</div>
+  <h1 class="title">iQOO 15</h1>
+  <div class="line"></div>
+  <p class="description">
+    Smartphone hiệu năng cao với Snapdragon 8 Elite Gen 5,
+    màn hình AMOLED 2K 144Hz, pin 7.000 mAh và hệ thống
+    camera đa dụng. Thiết bị hướng đến gaming, giải trí
+    và sử dụng hàng ngày trong thời gian dài.
+  </p>
 
-    <!-- =========================
-         HEADER
-    ========================= -->
-
-    <div class="small-title">
-        11A1 · BÀI TẬP 2.2
+  <section class="product">
+    <div class="carousel" id="productCarousel" aria-label="Thư viện ảnh vivo iQOO 15">
+      <div class="carousel-track" id="carouselTrack">
+        <!-- Thay các URL bên dưới bằng URL ảnh sản phẩm nếu cần -->
+        <div class="carousel-slide"><img src="https://cdn.mobilecity.vn/mobilecity-vn/images/2025/10/vivo-iqoo-15-trang.jpg" alt="vivo iQOO 15 - ảnh 1" draggable="false" onerror="this.style.display='none'"></div>
+        <div class="carousel-slide"><img src="https://cdn.mobilecity.vn/mobilecity-vn/images/2025/10/iqoo-15-hieu-nang.jpg" alt="vivo iQOO 15 - ảnh 2" draggable="false" onerror="this.style.display='none'"></div>
+        <div class="carousel-slide"><img src="https://cdn.mobilecity.vn/mobilecity-vn/images/2025/10/iqoo-15-thiet-ke.jpg" alt="vivo iQOO 15 - ảnh 3" draggable="false" onerror="this.style.display='none'"></div>
+        <div class="carousel-slide"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx3Y4ockJLb7Kkusox4XlSgJ7X-MtvT4Agjcu9NU69-g&s=10" alt="vivo iQOO 15 - ảnh 4" draggable="false" onerror="this.style.display='none'"></div>
+      </div>
+      <button class="carousel-arrow prev" id="carouselPrev" type="button" aria-label="Ảnh trước">‹</button>
+      <button class="carousel-arrow next" id="carouselNext" type="button" aria-label="Ảnh tiếp theo">›</button>
+      <div class="carousel-count" id="carouselCount" aria-live="polite">01 / 04</div>
+      <div class="carousel-dots" id="carouselDots" aria-label="Chọn ảnh">
+        <button class="carousel-dot active" type="button" aria-label="Ảnh 1" aria-current="true"></button>
+        <button class="carousel-dot" type="button" aria-label="Ảnh 2"></button>
+        <button class="carousel-dot" type="button" aria-label="Ảnh 3"></button>
+        <button class="carousel-dot" type="button" aria-label="Ảnh 4"></button>
+      </div>
     </div>
 
-    <div class="brand">
-        vivo
+    <div class="price-row">
+      <div class="price">16.650.000 ₫</div>
+      <div class="seller"><strong>MobileCity</strong><br>12 GB / 256 GB</div>
     </div>
 
-    <h1 class="title">
-        iQOO 15
-    </h1>
-
-    <div class="line"></div>
-
-    <p class="description">
-        Smartphone hiệu năng cao với Snapdragon 8 Elite Gen 5,
-        màn hình AMOLED 2K 144Hz, pin 7.000 mAh và hệ thống
-        camera đa dụng. Thiết bị hướng đến gaming, giải trí
-        và sử dụng hàng ngày trong thời gian dài.
-    </p>
-
-
-    <!-- =========================
-         PRODUCT
-    ========================= -->
-
-    <section class="product">
-
-        <!-- THAY URL ẢNH TẠI ĐÂY -->
-        <img
-            class="product-image"
-            src="YOUR_IMAGE_URL_HERE"
-            alt="vivo iQOO 15"
-        >
-
-        <div class="price-row">
-
-            <div class="price">
-                16.650.000 ₫
-            </div>
-
-            <div class="seller">
-                <strong>MobileCity</strong><br>
-                12 GB / 256 GB
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         CONFIGURATION
-    ========================= -->
-
-    <section class="section">
-
-        <h2 class="section-title">
-            Cấu hình
-        </h2>
-
-        <p class="section-subtitle">
-            Chọn từng thành phần để xem thông số.
-        </p>
-
-
-        <div class="tabs">
-
-            <!-- CPU / CHIP -->
-
-            <button class="tab active" onclick="showSpec('chip', this)">
-
-                <svg viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="currentColor"
-                     stroke-width="1.8">
-                    <rect x="6" y="6" width="12" height="12" rx="2"/>
-                    <rect x="9" y="9" width="6" height="6"/>
-                    <path d="M9 2v4M15 2v4M9 18v4M15 18v4"/>
-                    <path d="M2 9h4M2 15h4M18 9h4M18 15h4"/>
-                </svg>
-
-                Chip
-            </button>
-
-
-            <!-- RAM -->
-
-            <button class="tab" onclick="showSpec('ram', this)">
-
-                <svg viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="currentColor"
-                     stroke-width="1.8">
-                    <rect x="3" y="7" width="18" height="10" rx="2"/>
-                    <path d="M7 7V4M11 7V4M15 7V4M19 7V4"/>
-                    <path d="M7 17v3M11 17v3M15 17v3M19 17v3"/>
-                </svg>
-
-                RAM
-            </button>
-
-
-            <!-- STORAGE -->
-
-            <button class="tab" onclick="showSpec('storage', this)">
-
-                <svg viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="currentColor"
-                     stroke-width="1.8">
-                    <rect x="5" y="3" width="14" height="18" rx="2"/>
-                    <path d="M8 7h8M8 11h8M8 15h4"/>
-                </svg>
-
-                Storage
-            </button>
-
-
-            <!-- DISPLAY -->
-
-            <button class="tab" onclick="showSpec('display', this)">
-
-                <svg viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="currentColor"
-                     stroke-width="1.8">
-                    <rect x="3" y="4" width="18" height="14" rx="2"/>
-                    <path d="M8 21h8M12 18v3"/>
-                </svg>
-
-                Màn hình
-            </button>
-
-
-            <!-- CAMERA -->
-
-            <button class="tab" onclick="showSpec('camera', this)">
-
-                <svg viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="currentColor"
-                     stroke-width="1.8">
-                    <rect x="3" y="6" width="18" height="14" rx="2"/>
-                    <path d="M8 6l1.5-3h5L16 6"/>
-                    <circle cx="12" cy="13" r="3"/>
-                </svg>
-
-                Camera
-            </button>
-
-
-            <!-- BATTERY -->
-
-            <button class="tab" onclick="showSpec('battery', this)">
-
-                <svg viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="currentColor"
-                     stroke-width="1.8">
-                    <rect x="2" y="7" width="18" height="10" rx="2"/>
-                    <path d="M22 10v4"/>
-                    <path d="M6 10v4M10 10v4M14 10v4"/>
-                </svg>
-
-                Pin
-            </button>
-
-
-            <!-- SOFTWARE -->
-
-            <button class="tab" onclick="showSpec('software', this)">
-
-                <svg viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="currentColor"
-                     stroke-width="1.8">
-                    <rect x="4" y="3" width="16" height="18" rx="2"/>
-                    <path d="M8 7h8M8 11h5M8 15h8"/>
-                </svg>
-
-                Software
-            </button>
-
-
-            <!-- CONNECTIVITY -->
-
-            <button class="tab" onclick="showSpec('connectivity', this)">
-
-                <svg viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="currentColor"
-                     stroke-width="1.8">
-                    <path d="M5 9a10 10 0 0 1 14 0"/>
-                    <path d="M8 12a6 6 0 0 1 8 0"/>
-                    <path d="M11 15a2 2 0 0 1 2 0"/>
-                    <circle cx="12" cy="18" r="1"/>
-                </svg>
-
-                Kết nối
-            </button>
-
-
-            <!-- PROTECTION -->
-
-            <button class="tab" onclick="showSpec('protection', this)">
-
-                <svg viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="currentColor"
-                     stroke-width="1.8">
-                    <path d="M12 3 20 6v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/>
-                    <path d="m8 12 3 3 5-6"/>
-                </svg>
-
-                Bảo vệ
-            </button>
-
-        </div>
-
-
-        <!-- =========================
-             CHIP
-        ========================= -->
-
-        <div class="panel active" id="chip">
-
-            <div class="panel-head">
-
-                <div class="panel-icon">
-                    <svg viewBox="0 0 24 24"
-                         fill="none"
-                         stroke="currentColor"
-                         stroke-width="1.8">
-                        <rect x="6" y="6" width="12" height="12" rx="2"/>
-                        <rect x="9" y="9" width="6" height="6"/>
-                    </svg>
-                </div>
-
-                <div>
-                    <h3>Snapdragon 8 Elite Gen 5</h3>
-                    <p>Chipset flagship hiệu năng cao</p>
-                </div>
-
-            </div>
-
-            <div class="spec-grid">
-
-                <div class="spec">
-                    <div class="spec-label">Chipset</div>
-                    <div class="spec-value">Snapdragon 8 Elite Gen 5</div>
-                </div>
-
-                <div class="spec">
-                    <div class="spec-label">Category</div>
-                    <div class="spec-value">Flagship</div>
-                </div>
-
-                <div class="spec">
-                    <div class="spec-label">Performance</div>
-                    <div class="spec-value">High Performance</div>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- =========================
-             RAM
-        ========================= -->
-
-        <div class="panel" id="ram">
-
-            <div class="panel-head">
-
-                <div class="panel-icon">
-                    <svg viewBox="0 0 24 24"
-                         fill="none"
-                         stroke="currentColor"
-                         stroke-width="1.8">
-                        <rect x="3" y="7" width="18" height="10" rx="2"/>
-                        <path d="M7 7V4M11 7V4M15 7V4M19 7V4"/>
-                    </svg>
-                </div>
-
-                <div>
-                    <h3>12 GB LPDDR5X</h3>
-                    <p>Bộ nhớ lớn cho đa nhiệm</p>
-                </div>
-
-            </div>
-
-            <div class="spec-grid">
-
-                <div class="spec">
-                    <div class="spec-label">Capacity</div>
-                    <div class="spec-value">12 GB</div>
-                </div>
-
-                <div class="spec">
-                    <div class="spec-label">Type</div>
-                    <div class="spec-value">LPDDR5X</div>
-                </div>
-
-                <div class="spec">
-                    <div class="spec-label">Multitasking</div>
-                    <div class="spec-value">High</div>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- =========================
-             STORAGE
-        ========================= -->
-
-        <div class="panel" id="storage">
-
-            <div class="panel-head">
-
-                <div class="panel-icon">
-                    <svg viewBox="0 0 24 24"
-                         fill="none"
-                         stroke="currentColor"
-                         stroke-width="1.8">
-                        <rect x="5" y="3" width="14" height="18" rx="2"/>
-                        <path d="M8 7h8M8 11h8"/>
-                    </svg>
-                </div>
-
-                <div>
-                    <h3>256 GB UFS 4.1</h3>
-                    <p>Bộ nhớ trong tốc độ cao</p>
-                </div>
-
-            </div>
-
-            <div class="spec-grid">
-
-                <div class="spec">
-                    <div class="spec-label">Capacity</div>
-                    <div class="spec-value">256 GB</div>
-                </div>
-
-                <div class="spec">
-                    <div class="spec-label">Type</div>
-                    <div class="spec-value">UFS 4.1</div>
-                </div>
-
-                <div class="spec">
-                    <div class="spec-label">Expandable</div>
-                    <div class="spec-value">Không</div>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- =========================
-             DISPLAY
-        ========================= -->
-
-        <div class="panel" id="display">
-
-            <div class="panel-head">
-
-                <div class="panel-icon">
-                    <svg viewBox="0 0 24 24"
-                         fill="none"
-                         stroke="currentColor"
-                         stroke-width="1.8">
-                        <rect x="3" y="4" width="18" height="14" rx="2"/>
-                        <path d="M8 21h8M12 18v3"/>
-                    </svg>
-                </div>
-
-                <div>
-                    <h3>6.85" AMOLED</h3>
-                    <p>Samsung M14 · 2K · 144Hz</p>
-                </div>
-
-            </div>
-
-            <div class="spec-grid">
-
-                <div class="spec">
-                    <div class="spec-label">Panel</div>
-                    <div class="spec-value">AMOLED</div>
-                </div>
-
-                <div class="spec">
-                    <div class="spec-label">Resolution</div>
-                    <div class="spec-value">2K</div>
-                </div>
-
-                <div class="spec">
-                    <div class="spec-label">Refresh Rate</div>
-                    <div class="spec-value">144 Hz</div>
-                </div>
-
-                <div class="spec">
-                    <div class="spec-label">Panel</div>
-                    <div class="spec-value">Samsung M14</div>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- =========================
-             CAMERA
-        ========================= -->
-
-        <div class="panel" id="camera">
-
-            <div class="panel-head">
-
-                <div class="panel-icon">
-                    <svg viewBox="0 0 24 24"
-                         fill="none"
-                         stroke="currentColor"
-                         stroke-width="1.8">
-                        <rect x="3" y="6" width="18" height="14" rx="2"/>
-                        <path d="M8 6l1.5-3h5L16 6"/>
-                        <circle cx="12" cy="13" r="3"/>
-                    </svg>
-                </div>
-
-                <div>
-                    <h3>Triple 50 MP</h3>
-                    <p>Hệ thống camera đa dụng</p>
-                </div>
-
-            </div>
-
-            <div class="spec-grid">
-
-                <div class="spec">
-                    <div class="spec-label">Main</div>
-                    <div class="spec-value">50 MP</div>
-                </div>
-
-                <div class="spec">
-                    <div class="spec-label">Telephoto</div>
-                    <div class="spec-value">50 MP Periscope</div>
-                </div>
-
-                <div class="spec">
-                    <div class="spec-label">Front</div>
-                    <div class="spec-value">32 MP</div>
-                </div>
-
-                <div class="spec">
-                    <div class="spec-label">System</div>
-                    <div class="spec-value">Triple Camera</div>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- =========================
-             BATTERY
-        ========================= -->
-
-        <div class="panel" id="battery">
-
-            <div class="panel-head">
-
-                <div class="panel-icon">
-                    <svg viewBox="0 0 24 24"
-                         fill="none"
-                         stroke="currentColor"
-                         stroke-width="1.8">
-                        <rect x="2" y="7" width="18" height="10" rx="2"/>
-                        <path d="M22 10v4"/>
-                    </svg>
-                </div>
-
-                <div>
-                    <h3>7.000 mAh</h3>
-                    <p>Pin lớn và sạc nhanh</p>
-                </div>
-
-            </div>
-
-            <div class="spec-grid">
-
-                <div class="spec">
-                    <div class="spec-label">Battery</div>
-                    <div class="spec-value">7.000 mAh</div>
-                </div>
-
-                <div class="spec">
-                    <div class="spec-label">Wired</div>
-                    <div class="spec-value">100 W</div>
-                </div>
-
-                <div class="spec">
-                    <div class="spec-label">Wireless</div>
-                    <div class="spec-value">40 W</div>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- =========================
-             SOFTWARE
-        ========================= -->
-
-        <div class="panel" id="software">
-
-            <div class="panel-head">
-
-                <div class="panel-icon">
-                    <svg viewBox="0 0 24 24"
-                         fill="none"
-                         stroke="currentColor"
-                         stroke-width="1.8">
-                        <rect x="4" y="3" width="16" height="18" rx="2"/>
-                        <path d="M8 7h8M8 11h5M8 15h8"/>
-                    </svg>
-                </div>
-
-                <div>
-                    <h3>OriginOS 6</h3>
-                    <p>Nền tảng Android 16</p>
-                </div>
-
-            </div>
-
-            <div class="spec-grid">
-
-                <div class="spec">
-                    <div class="spec-label">OS</div>
-                    <div class="spec-value">OriginOS 6</div>
-                </div>
-
-                <div class="spec">
-                    <div class="spec-label">Android</div>
-                    <div class="spec-value">Android 16</div>
-                </div>
-
-                <div class="spec">
-                    <div class="spec-label">Platform</div>
-                    <div class="spec-value">vivo / iQOO</div>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- =========================
-             CONNECTIVITY
-        ========================= -->
-
-        <div class="panel" id="connectivity">
-
-            <div class="panel-head">
-
-                <div class="panel-icon">
-                    <svg viewBox="0 0 24 24"
-                         fill="none"
-                         stroke="currentColor"
-                         stroke-width="1.8">
-                        <path d="M5 9a10 10 0 0 1 14 0"/>
-                        <path d="M8 12a6 6 0 0 1 8 0"/>
-                        <path d="M11 15a2 2 0 0 1 2 0"/>
-                        <circle cx="12" cy="18" r="1"/>
-                    </svg>
-                </div>
-
-                <div>
-                    <h3>5G · Wi-Fi 7</h3>
-                    <p>Kết nối thế hệ mới</p>
-                </div>
-
-            </div>
-
-            <div class="spec-grid">
-
-                <div class="spec">
-                    <div class="spec-label">Mobile</div>
-                    <div class="spec-value">5G</div>
-                </div>
-
-                <div class="spec">
-                    <div class="spec-label">Wi-Fi</div>
-                    <div class="spec-value">Wi-Fi 7</div>
-                </div>
-
-                <div class="spec">
-                    <div class="spec-label">Bluetooth</div>
-                    <div class="spec-value">Supported</div>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- =========================
-             PROTECTION
-        ========================= -->
-
-        <div class="panel" id="protection">
-
-            <div class="panel-head">
-
-                <div class="panel-icon">
-                    <svg viewBox="0 0 24 24"
-                         fill="none"
-                         stroke="currentColor"
-                         stroke-width="1.8">
-                        <path d="M12 3 20 6v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/>
-                        <path d="m8 12 3 3 5-6"/>
-                    </svg>
-                </div>
-
-                <div>
-                    <h3>IP68 + IP69</h3>
-                    <p>Khả năng chống bụi và nước</p>
-                </div>
-
-            </div>
-
-            <div class="spec-grid">
-
-                <div class="spec">
-                    <div class="spec-label">Rating</div>
-                    <div class="spec-value">IP68</div>
-                </div>
-
-                <div class="spec">
-                    <div class="spec-label">Rating</div>
-                    <div class="spec-value">IP69</div>
-                </div>
-
-                <div class="spec">
-                    <div class="spec-label">Protection</div>
-                    <div class="spec-value">Dust / Water</div>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         PROS / CONS
-    ========================= -->
-
-    <section class="section">
-
-        <h2 class="section-title">
-            Ưu & nhược điểm
-        </h2>
-
-        <p class="section-subtitle">
-            Đánh giá nhanh.
-        </p>
-
-
-        <div class="pros-cons">
-
-            <div class="box good">
-
-                <div class="box-title">
-
-                    <svg viewBox="0 0 24 24"
-                         fill="none"
-                         stroke="currentColor"
-                         stroke-width="1.8">
-                        <path d="m5 12 4 4L19 6"/>
-                    </svg>
-
-                    Ưu điểm
-
-                </div>
-
-                <ul>
-
-                    <li>
-                        <svg viewBox="0 0 24 24"
-                             fill="none"
-                             stroke="currentColor"
-                             stroke-width="1.8">
-                            <path d="m5 12 4 4L19 6"/>
-                        </svg>
-                        Hiệu năng flagship mạnh.
-                    </li>
-
-                    <li>
-                        <svg viewBox="0 0 24 24"
-                             fill="none"
-                             stroke="currentColor"
-                             stroke-width="1.8">
-                            <path d="m5 12 4 4L19 6"/>
-                        </svg>
-                        12 GB RAM + 256 GB UFS 4.1.
-                    </li>
-
-                    <li>
-                        <svg viewBox="0 0 24 24"
-                             fill="none"
-                             stroke="currentColor"
-                             stroke-width="1.8">
-                            <path d="m5 12 4 4L19 6"/>
-                        </svg>
-                        AMOLED 2K 144Hz.
-                    </li>
-
-                    <li>
-                        <svg viewBox="0 0 24 24"
-                             fill="none"
-                             stroke="currentColor"
-                             stroke-width="1.8">
-                            <path d="m5 12 4 4L19 6"/>
-                        </svg>
-                        Pin 7.000 mAh.
-                    </li>
-
-                    <li>
-                        <svg viewBox="0 0 24 24"
-                             fill="none"
-                             stroke="currentColor"
-                             stroke-width="1.8">
-                            <path d="m5 12 4 4L19 6"/>
-                        </svg>
-                        Sạc nhanh 100 W.
-                    </li>
-
-                    <li>
-                        <svg viewBox="0 0 24 24"
-                             fill="none"
-                             stroke="currentColor"
-                             stroke-width="1.8">
-                            <path d="m5 12 4 4L19 6"/>
-                        </svg>
-                        Camera telephoto periscope.
-                    </li>
-
-                    <li>
-                        <svg viewBox="0 0 24 24"
-                             fill="none"
-                             stroke="currentColor"
-                             stroke-width="1.8">
-                            <path d="m5 12 4 4L19 6"/>
-                        </svg>
-                        IP68 + IP69.
-                    </li>
-
-                </ul>
-
-            </div>
-
-
-            <div class="box bad">
-
-                <div class="box-title">
-
-                    <svg viewBox="0 0 24 24"
-                         fill="none"
-                         stroke="currentColor"
-                         stroke-width="1.8">
-                        <circle cx="12" cy="12" r="9"/>
-                        <path d="M8 8l8 8M16 8l-8 8"/>
-                    </svg>
-
-                    Nhược điểm
-
-                </div>
-
-                <ul>
-
-                    <li>
-                        <svg viewBox="0 0 24 24"
-                             fill="none"
-                             stroke="currentColor"
-                             stroke-width="1.8">
-                            <circle cx="12" cy="12" r="9"/>
-                        </svg>
-                        Kích thước máy khá lớn.
-                    </li>
-
-                    <li>
-                        <svg viewBox="0 0 24 24"
-                             fill="none"
-                             stroke="currentColor"
-                             stroke-width="1.8">
-                            <circle cx="12" cy="12" r="9"/>
-                        </svg>
-                        Khối lượng có thể cao hơn máy phổ thông.
-                    </li>
-
-                    <li>
-                        <svg viewBox="0 0 24 24"
-                             fill="none"
-                             stroke="currentColor"
-                             stroke-width="1.8">
-                            <circle cx="12" cy="12" r="9"/>
-                        </svg>
-                        Không hỗ trợ mở rộng bộ nhớ.
-                    </li>
-
-                    <li>
-                        <svg viewBox="0 0 24 24"
-                             fill="none"
-                             stroke="currentColor"
-                             stroke-width="1.8">
-                            <circle cx="12" cy="12" r="9"/>
-                        </svg>
-                        ROM nội địa có thể cần làm quen.
-                    </li>
-
-                    <li>
-                        <svg viewBox="0 0 24 24"
-                             fill="none"
-                             stroke="currentColor"
-                             stroke-width="1.8">
-                            <circle cx="12" cy="12" r="9"/>
-                        </svg>
-                        Giá tương đối cao.
-                    </li>
-
-                </ul>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         REASON
-    ========================= -->
-
-    <section class="section">
-
-        <div class="reason">
-
-            <div class="reason-title">
-
-                <svg viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="currentColor"
-                     stroke-width="1.8">
-                    <path d="M9 18h6"/>
-                    <path d="M10 22h4"/>
-                    <path d="M8.5 14.5a6 6 0 1 1 7 0c-.8.6-1.5 1.4-1.5 2.5h-5c0-1.1-.7-1.9-1.5-2.5z"/>
-                </svg>
-
-                Lý do lựa chọn
-
-            </div>
-
-            <p>
-                Nhóm lựa chọn iQOO 15 vì thiết bị tập trung mạnh vào
-                hiệu năng, màn hình và thời lượng pin. Snapdragon 8 Elite
-                Gen 5 kết hợp với 12 GB RAM giúp máy đáp ứng tốt gaming,
-                đa nhiệm và các tác vụ nặng.
-            </p>
-
-            <p>
-                Màn hình AMOLED 2K 144Hz, pin 7.000 mAh và hệ thống
-                camera telephoto giúp thiết bị không chỉ phù hợp gaming
-                mà còn đáp ứng tốt nhu cầu giải trí và sử dụng hàng ngày.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <footer>
-        11A1 · Bài tập 2.2 · vivo iQOO 15
-    </footer>
-
+    <a class="buy-button"
+       href="https://mobilecity.vn/dien-thoai/vivo-iqoo-15-5g.html"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Mua vivo iQOO 15 5G tại MobileCity">
+      MUA NGAY <span class="arrow">↗</span>
+    </a>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Cấu hình</h2>
+    <p class="section-subtitle">Chọn từng thành phần để xem thông số.</p>
+    <div class="tabs">
+      <button class="tab active" onclick="showSpec('chip',this)">▦ Chip</button>
+      <button class="tab" onclick="showSpec('ram',this)">▤ RAM</button>
+      <button class="tab" onclick="showSpec('storage',this)">▣ Storage</button>
+      <button class="tab" onclick="showSpec('display',this)">▱ Màn hình</button>
+      <button class="tab" onclick="showSpec('camera',this)">◎ Camera</button>
+      <button class="tab" onclick="showSpec('battery',this)">▰ Pin</button>
+      <button class="tab" onclick="showSpec('software',this)">▤ Software</button>
+      <button class="tab" onclick="showSpec('connectivity',this)">⌁ Kết nối</button>
+      <button class="tab" onclick="showSpec('protection',this)">◇ Bảo vệ</button>
+    </div>
+
+    <div class="panel active" id="chip">
+      <div class="panel-head"><div class="panel-icon">▦</div><div><h3>Snapdragon 8 Elite Gen 5</h3><p>Chipset flagship hiệu năng cao</p></div></div>
+      <div class="spec-grid">
+        <div class="spec"><div class="spec-label">Chipset</div><div class="spec-value">Snapdragon 8 Elite Gen 5</div></div>
+        <div class="spec"><div class="spec-label">Category</div><div class="spec-value">Flagship</div></div>
+        <div class="spec"><div class="spec-label">Performance</div><div class="spec-value">High Performance</div></div>
+      </div>
+    </div>
+    <div class="panel" id="ram">
+      <div class="panel-head"><div class="panel-icon">▤</div><div><h3>12 GB LPDDR5X</h3><p>Bộ nhớ lớn cho đa nhiệm</p></div></div>
+      <div class="spec-grid">
+        <div class="spec"><div class="spec-label">Capacity</div><div class="spec-value">12 GB</div></div>
+        <div class="spec"><div class="spec-label">Type</div><div class="spec-value">LPDDR5X</div></div>
+        <div class="spec"><div class="spec-label">Multitasking</div><div class="spec-value">High</div></div>
+      </div>
+    </div>
+    <div class="panel" id="storage">
+      <div class="panel-head"><div class="panel-icon">▣</div><div><h3>256 GB UFS 4.1</h3><p>Bộ nhớ trong tốc độ cao</p></div></div>
+      <div class="spec-grid">
+        <div class="spec"><div class="spec-label">Capacity</div><div class="spec-value">256 GB</div></div>
+        <div class="spec"><div class="spec-label">Type</div><div class="spec-value">UFS 4.1</div></div>
+        <div class="spec"><div class="spec-label">Expandable</div><div class="spec-value">Không</div></div>
+      </div>
+    </div>
+    <div class="panel" id="display">
+      <div class="panel-head"><div class="panel-icon">▱</div><div><h3>6.85" AMOLED</h3><p>Samsung M14 · 2K · 144Hz</p></div></div>
+      <div class="spec-grid">
+        <div class="spec"><div class="spec-label">Panel</div><div class="spec-value">AMOLED</div></div>
+        <div class="spec"><div class="spec-label">Resolution</div><div class="spec-value">2K</div></div>
+        <div class="spec"><div class="spec-label">Refresh Rate</div><div class="spec-value">144 Hz</div></div>
+        <div class="spec"><div class="spec-label">Panel</div><div class="spec-value">Samsung M14</div></div>
+      </div>
+    </div>
+    <div class="panel" id="camera">
+      <div class="panel-head"><div class="panel-icon">◎</div><div><h3>Triple 50 MP</h3><p>Hệ thống camera đa dụng</p></div></div>
+      <div class="spec-grid">
+        <div class="spec"><div class="spec-label">Main</div><div class="spec-value">50 MP</div></div>
+        <div class="spec"><div class="spec-label">Telephoto</div><div class="spec-value">50 MP Periscope</div></div>
+        <div class="spec"><div class="spec-label">Front</div><div class="spec-value">32 MP</div></div>
+        <div class="spec"><div class="spec-label">System</div><div class="spec-value">Triple Camera</div></div>
+      </div>
+    </div>
+    <div class="panel" id="battery">
+      <div class="panel-head"><div class="panel-icon">▰</div><div><h3>7.000 mAh</h3><p>Pin lớn và sạc nhanh</p></div></div>
+      <div class="spec-grid">
+        <div class="spec"><div class="spec-label">Battery</div><div class="spec-value">7.000 mAh</div></div>
+        <div class="spec"><div class="spec-label">Wired</div><div class="spec-value">100 W</div></div>
+        <div class="spec"><div class="spec-label">Wireless</div><div class="spec-value">40 W</div></div>
+      </div>
+    </div>
+    <div class="panel" id="software">
+      <div class="panel-head"><div class="panel-icon">▤</div><div><h3>OriginOS 6</h3><p>Nền tảng Android 16</p></div></div>
+      <div class="spec-grid">
+        <div class="spec"><div class="spec-label">OS</div><div class="spec-value">OriginOS 6</div></div>
+        <div class="spec"><div class="spec-label">Android</div><div class="spec-value">Android 16</div></div>
+        <div class="spec"><div class="spec-label">Platform</div><div class="spec-value">vivo / iQOO</div></div>
+      </div>
+    </div>
+    <div class="panel" id="connectivity">
+      <div class="panel-head"><div class="panel-icon">⌁</div><div><h3>5G · Wi-Fi 7</h3><p>Kết nối thế hệ mới</p></div></div>
+      <div class="spec-grid">
+        <div class="spec"><div class="spec-label">Mobile</div><div class="spec-value">5G</div></div>
+        <div class="spec"><div class="spec-label">Wi-Fi</div><div class="spec-value">Wi-Fi 7</div></div>
+        <div class="spec"><div class="spec-label">Bluetooth</div><div class="spec-value">Supported</div></div>
+      </div>
+    </div>
+    <div class="panel" id="protection">
+      <div class="panel-head"><div class="panel-icon">◇</div><div><h3>IP68 + IP69</h3><p>Khả năng chống bụi và nước</p></div></div>
+      <div class="spec-grid">
+        <div class="spec"><div class="spec-label">Rating</div><div class="spec-value">IP68</div></div>
+        <div class="spec"><div class="spec-label">Rating</div><div class="spec-value">IP69</div></div>
+        <div class="spec"><div class="spec-label">Protection</div><div class="spec-value">Dust / Water</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Ưu &amp; nhược điểm</h2>
+    <p class="section-subtitle">Đánh giá nhanh.</p>
+    <div class="pros-cons">
+      <div class="box good">
+        <div class="box-title"><span class="mark">✓</span> Ưu điểm</div>
+        <ul>
+          <li><span class="mark">✓</span> Hiệu năng flagship mạnh.</li>
+          <li><span class="mark">✓</span> 12 GB RAM + 256 GB UFS 4.1.</li>
+          <li><span class="mark">✓</span> AMOLED 2K 144Hz.</li>
+          <li><span class="mark">✓</span> Pin 7.000 mAh.</li>
+          <li><span class="mark">✓</span> Sạc nhanh 100 W.</li>
+          <li><span class="mark">✓</span> Camera telephoto periscope.</li>
+          <li><span class="mark">✓</span> IP68 + IP69.</li>
+        </ul>
+      </div>
+      <div class="box bad">
+        <div class="box-title"><span class="mark">×</span> Nhược điểm</div>
+        <ul>
+          <li><span class="mark">×</span> Kích thước máy khá lớn.</li>
+          <li><span class="mark">×</span> Khối lượng có thể cao hơn máy phổ thông.</li>
+          <li><span class="mark">×</span> Không hỗ trợ mở rộng bộ nhớ.</li>
+          <li><span class="mark">×</span> ROM nội địa có thể cần làm quen.</li>
+          <li><span class="mark">×</span> Giá tương đối cao.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="reason">
+      <div class="reason-title">✧ Lý do lựa chọn</div>
+      <p>Nhóm lựa chọn iQOO 15 vì thiết bị tập trung mạnh vào hiệu năng, màn hình và thời lượng pin. Snapdragon 8 Elite Gen 5 kết hợp với 12 GB RAM giúp máy đáp ứng tốt gaming, đa nhiệm và các tác vụ nặng.</p>
+      <p>Màn hình AMOLED 2K 144Hz, pin 7.000 mAh và hệ thống camera telephoto giúp thiết bị không chỉ phù hợp gaming mà còn đáp ứng tốt nhu cầu giải trí và sử dụng hàng ngày.</p>
+    </div>
+  </section>
+  <footer>11A1 · Bài tập 2.2 · vivo iQOO 15</footer>
 </main>
 
-
 <script>
-
 function showSpec(id, button) {
-
-    document.querySelectorAll('.panel').forEach(panel => {
-        panel.classList.remove('active');
-    });
-
-    document.querySelectorAll('.tab').forEach(tab => {
-        tab.classList.remove('active');
-    });
-
-    document.getElementById(id).classList.add('active');
-
-    button.classList.add('active');
+  document.querySelectorAll('.panel').forEach(panel => panel.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  button.classList.add('active');
 }
 
-</script>
+const track = document.getElementById('carouselTrack');
+const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+const dots = Array.from(document.querySelectorAll('.carousel-dot'));
+const count = document.getElementById('carouselCount');
+let currentSlide = 0;
 
+function goToSlide(index) {
+  currentSlide = (index + slides.length) % slides.length;
+  track.style.transform = `translateX(-${currentSlide * 100}%)`;
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === currentSlide);
+    if (i === currentSlide) dot.setAttribute('aria-current', 'true');
+    else dot.removeAttribute('aria-current');
+  });
+  count.textContent = `${String(currentSlide + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+}
+document.getElementById('carouselPrev').addEventListener('click', () => goToSlide(currentSlide - 1));
+document.getElementById('carouselNext').addEventListener('click', () => goToSlide(currentSlide + 1));
+dots.forEach((dot, i) => dot.addEventListener('click', () => goToSlide(i)));
+
+let touchStartX = 0;
+const carousel = document.getElementById('productCarousel');
+carousel.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive:true});
+carousel.addEventListener('touchend', e => {
+  const delta = e.changedTouches[0].screenX - touchStartX;
+  if (Math.abs(delta) > 45) goToSlide(currentSlide + (delta < 0 ? 1 : -1));
+}, {passive:true});
+</script>
 </body>
 </html>
