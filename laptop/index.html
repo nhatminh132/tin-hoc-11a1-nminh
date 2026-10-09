@@ -314,6 +314,54 @@ body {
 
 
 /* =========================
+   BUY BUTTON
+========================= */
+
+.buy-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 18px;
+    padding: 13px 22px;
+    background: #fff;
+    color: #111;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    text-decoration: none;
+    transition: background .25s ease, color .25s ease, transform .25s ease;
+}
+
+.buy-button:hover {
+    background: #d9d9d9;
+    transform: translateY(-2px);
+}
+
+.buy-button .arrow {
+    font-size: 17px;
+    transition: transform .25s ease;
+}
+
+.buy-button:hover .arrow {
+    transform: translate(3px, -3px);
+}
+
+body.light .buy-button {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+}
+
+body.light .buy-button:hover {
+    background: #333;
+}
+
+
+/* =========================
    SECTION
 ========================= */
 
@@ -1016,6 +1064,17 @@ body.light footer {
             </div>
 
         </div>
+
+        <a
+            class="buy-button"
+            href="https://fptshop.com.vn/may-tinh-xach-tay/gigabyte-gaming-a16-cwhi3vnc94sh-i7-13620h?utm_source=chatgpt.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Mua GIGABYTE Gaming A16 tại FPT Shop"
+        >
+            MUA NGAY
+            <span class="arrow">↗</span>
+        </a>
 
     </section>
 
