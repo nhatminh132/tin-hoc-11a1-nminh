@@ -7,7 +7,7 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
-body{min-height:100vh;background:#111;color:#fff;font-family:Inter,sans-serif}
+body{min-height:100vh;background:#111;color:#fff;font-family:Inter,sans-serif;transition:background .25s ease,color .25s ease}
 .container{width:90%;max-width:1100px;margin:auto;padding:45px 20px}
 .small-title{color:#888;font-size:13px;font-weight:600;letter-spacing:2px;margin-bottom:25px}
 .brand{color:#666;font-size:clamp(24px,4vw,38px);font-weight:700;letter-spacing:-1px;line-height:1}
@@ -60,19 +60,89 @@ body{min-height:100vh;background:#111;color:#fff;font-family:Inter,sans-serif}
 .reason-title{display:flex;align-items:center;gap:9px;font-size:18px;font-weight:800}
 .reason p{max-width:750px;margin-top:13px;color:#888;font-size:13px;line-height:1.7}
 footer{margin-top:65px;padding-top:20px;border-top:1px solid #292929;color:#555;font-size:11px;text-align:center}
+
+/* Nút chuyển đổi Dark / Light */
+.theme-toggle{
+  position:fixed;
+  z-index:100;
+  top:18px;
+  right:18px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border:1px solid #333;
+  border-radius:999px;
+  background:#202020;
+  color:#fff;
+  font-family:inherit;
+  font-size:12px;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 4px 16px rgba(0,0,0,.12);
+  transition:background .25s ease,color .25s ease,border-color .25s ease,transform .2s ease;
+}
+.theme-toggle:hover{transform:translateY(-2px)}
+.theme-icon{font-size:16px;line-height:1}
+
+/* Light Mode: nền trắng */
+body.light{background:#fff;color:#111}
+body.light .small-title{color:#777}
+body.light .brand{color:#555}
+body.light .description{color:#666}
+body.light .line{background:#ccc}
+body.light .carousel{background:#f5f5f5;border-color:#e5e5e5}
+body.light .carousel-arrow{border-color:rgba(0,0,0,.12);background:rgba(255,255,255,.9);color:#111}
+body.light .carousel-arrow:hover{background:#e8e8e8}
+body.light .carousel-dots{border-color:rgba(0,0,0,.1);background:rgba(255,255,255,.8)}
+body.light .carousel-dot{background:#bbb}
+body.light .carousel-dot.active{background:#111}
+body.light .carousel-count{border-color:rgba(0,0,0,.1);background:rgba(255,255,255,.85);color:#333}
+body.light .seller{color:#777}
+body.light .seller strong{color:#333}
+body.light .buy-button{background:#111;color:#fff;border-color:#111}
+body.light .buy-button:hover{background:#333}
+body.light .section-subtitle{color:#777}
+body.light .tab{border-color:#e0e0e0;background:#f5f5f5;color:#666}
+body.light .tab:hover{color:#111;border-color:#bbb}
+body.light .tab.active{background:#111;color:#fff;border-color:#111}
+body.light .panel{background:#fafafa;border-color:#e5e5e5}
+body.light .panel-icon{background:#fff;border-color:#e0e0e0}
+body.light .panel-head p{color:#777}
+body.light .spec{background:#fff;border-color:#e5e5e5}
+body.light .spec:hover{border-color:#bbb}
+body.light .spec-label{color:#777}
+body.light .spec-value{color:#111}
+body.light .spec-description{color:#777}
+body.light .box{background:#fafafa;border-color:#e5e5e5}
+body.light .box li{border-color:#e5e5e5;color:#666}
+body.light .good .mark{color:#333}
+body.light .bad .mark{color:#888}
+body.light .reason{background:#fafafa;border-color:#e5e5e5}
+body.light .reason p{color:#666}
+body.light footer{border-color:#e5e5e5;color:#777}
+body.light .theme-toggle{background:#fff;color:#111;border-color:#ddd}
+
 @media(max-width:600px){
-.container{width:94%;padding:30px 10px}.small-title{font-size:11px;letter-spacing:1px}
+.container{width:94%;padding:65px 10px 30px}.small-title{font-size:11px;letter-spacing:1px}
 .brand{font-size:24px}.title{font-size:clamp(62px,17vw,90px);letter-spacing:-4px}
 .carousel{height:280px;border-radius:15px}.carousel-arrow{width:36px;height:36px;font-size:22px}
 .carousel-arrow.prev{left:9px}.carousel-arrow.next{right:9px}.carousel-dots{bottom:10px}
 .price-row{align-items:flex-start;flex-direction:column;gap:6px}.seller{text-align:left}
 .section{margin-top:55px}.tabs{gap:5px}.tab{padding:8px 10px}.panel{padding:16px}
 .spec-grid{grid-template-columns:repeat(2,1fr)}
+.theme-toggle{top:12px;right:12px;padding:8px 11px;font-size:11px}
 }
 @media(max-width:380px){.spec-grid{grid-template-columns:1fr}}
 </style>
 </head>
-<body>
+<body class="light">
+
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Chuyển sang giao diện tối" aria-pressed="false">
+  <span class="theme-icon" id="themeIcon">☾</span>
+  <span id="themeLabel">Dark Mode</span>
+</button>
+
 <main class="container">
   <div class="small-title">11A1 · BÀI TẬP 2.2</div>
   <div class="brand">vivo</div>
@@ -250,6 +320,37 @@ footer{margin-top:65px;padding-top:20px;border-top:1px solid #292929;color:#555;
 </main>
 
 <script>
+/* Dark / Light Mode */
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+const themeLabel = document.getElementById('themeLabel');
+
+function applyTheme(isLight) {
+  document.body.classList.toggle('light', isLight);
+  themeIcon.textContent = isLight ? '☾' : '☀';
+  themeLabel.textContent = isLight ? 'Dark Mode' : 'Light Mode';
+  themeToggle.setAttribute('aria-label', isLight ? 'Chuyển sang giao diện tối' : 'Chuyển sang giao diện sáng');
+  themeToggle.setAttribute('aria-pressed', String(!isLight));
+
+  try {
+    localStorage.setItem('team-theme', isLight ? 'light' : 'dark');
+  } catch (error) {
+    // Giao diện vẫn hoạt động nếu trình duyệt chặn localStorage.
+  }
+}
+
+themeToggle.addEventListener('click', () => {
+  applyTheme(!document.body.classList.contains('light'));
+});
+
+/* Mặc định nền trắng; nếu đã chọn giao diện trước đó thì khôi phục lựa chọn */
+try {
+  const savedTheme = localStorage.getItem('team-theme');
+  applyTheme(savedTheme === 'dark' ? false : true);
+} catch (error) {
+  applyTheme(true);
+}
+
 function showSpec(id, button) {
   document.querySelectorAll('.panel').forEach(panel => panel.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
